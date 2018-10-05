@@ -5,7 +5,8 @@ from bash_color import BashColor
 
 
 def print_day_schedule(sessions):
-    earliest_start = sessions[0].start
+    if len(sessions) > 0:
+        earliest_start = sessions[0].start
 
     sys.stdout.write(BashColor.BOLD + ' {id:<{width}}'.format(id='ID', width=9) + BashColor.DARKGREY + ' # ' + BashColor.END)
     sys.stdout.write(BashColor.BOLD + '{title:<{width}}'.format(title='TITLE', width=60) + BashColor.DARKGREY + ' # ' + BashColor.END)

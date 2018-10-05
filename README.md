@@ -44,6 +44,8 @@ You can filter the output by using the parameters described below.
 
 `-l` / `--location`: Filter output to only include locations containing given text. Possible values include e.g. 'Venetian', 'Grand Ballroom B'. This is not case sensitive.
 
+`-n` / `--name`: Filter output to only include items with given text in the title. This is not case sensitive.
+
 `-a` / `--abstract`: Filter output to only include items with given text in the abstract. This is not case sensitive.
 
 `-A` / `--show_abstract`: show the session description in output

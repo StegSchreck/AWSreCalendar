@@ -31,6 +31,11 @@ def parse_args():
                                 "Filtering for 'Session' will not show items of type 'Builders Session'. "
                                 "This is not case sensitive.",
                            required=False)
+    argparser.add_argument("-n", "--name",
+                           help="Filter output to only include sessions containing this text in title. "
+                                "Possible values include e.g. 'Infrastructure', 'how to'. "
+                                "This is not case sensitive.",
+                           required=False)
     argparser.add_argument("-s", "--speaker",
                            help="Filter output to only include speakers with this name. "
                                 "Possible values include e.g. 'Werner Vogels', 'Vogels'. "
@@ -42,7 +47,7 @@ def parse_args():
                                 "This is not case sensitive.",
                            required=False)
     argparser.add_argument("-a", "--abstract",
-                           help="Filter output to only include this sessions containing this text. "
+                           help="Filter output to only include sessions containing this text in abstract. "
                                 "Possible values include e.g. 'containers', 'will present'. "
                                 "This is not case sensitive.",
                            required=False)

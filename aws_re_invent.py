@@ -121,6 +121,8 @@ class AWSreInvent:
             sessions = [session for session in sessions if self.args.location.strip().lower() in session.location.lower()]
         if self.args.abstract:
             sessions = [session for session in sessions if self.args.abstract.strip().lower() in session.abstract.lower()]
+        if self.args.name:
+            sessions = [session for session in sessions if self.args.name.strip().lower() in session.title.lower()]
         return sessions
 
     def parse_sessions(self):
