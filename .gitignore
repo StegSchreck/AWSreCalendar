@@ -4,4 +4,5 @@
 build
 dist
 venv
+export*.csv
 __pycache__
