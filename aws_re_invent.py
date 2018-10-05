@@ -10,6 +10,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 from bash_color import BashColor
 from browser_handler import BrowserHandler
+from console_output import print_sessions, print_day_schedule
 from file_impex import load_sessions_from_csv, save_sessions_to_csv
 
 
@@ -106,7 +107,10 @@ class AWSreInvent:
                         day_size=group_size
                     ) + BashColor.END)
                 print()
-                self.print_sessions(sessions)
+                if not self.args.verbose:
+                    print_day_schedule(sessions)
+                else:
+                    print_sessions(sessions, self.args)
 
     def filter_sessions_by_arguments(self, sessions):
         if self.args.type:
@@ -193,23 +197,3 @@ class AWSreInvent:
             parsed_speaker = self.html_tag_regex.sub('', parsed_speaker)
             session_speakers.append(parsed_speaker)
         return session_speakers
-
-    def print_sessions(self, sessions):
-        for session in sessions:
-            self.print_session(session)
-
-    def print_session(self, session):
-        print(BashColor.UNDERLINE + '{id} - {title}'.format(id=session.id, title=session.title) + BashColor.END)
-        print(BashColor.VIOLET + '{type}'.format(type=session.type) + BashColor.END + '  by ' +
-              BashColor.BLUE + ', '.join(session.speakers) + BashColor.END)
-        print(
-            BashColor.YELLOW + '{start} -> {end}'.format(
-                start=datetime.datetime.strftime(session.start, '%a (%b %d) %H:%M'),
-                end=datetime.datetime.strftime(session.end, '%H:%M')
-            ) + BashColor.END +
-            '  @ ' + BashColor.RED + '{location}'.format(location=session.location) + BashColor.END
-        )
-
-        if self.args.show_abstract:
-            print(BashColor.DIM + '{abstract}'.format(abstract=session.abstract) + BashColor.END)
-        print()
