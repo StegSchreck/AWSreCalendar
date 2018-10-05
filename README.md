@@ -28,6 +28,9 @@ python3 main.py -u <your.name@domain.com> -p <your_secret_password>
 ```
 You can filter the output by using the parameters described below.
 
+### Add special events
+You can add some special events by editing `special_events.csv`, which is already pre-filled with three events.
+
 
 ## Call arguments / parameters
 ### Mandatory

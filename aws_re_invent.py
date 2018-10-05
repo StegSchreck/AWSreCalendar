@@ -90,6 +90,8 @@ class AWSreInvent:
         else:
             sessions = self.parse_sessions()
             save_sessions_to_csv(sessions)
+        special_events = load_sessions_from_csv('special_events.csv')
+        sessions = sessions + special_events
 
         sessions.sort(key=lambda session: session.start)
         grouped_sessions = groupby(sessions, lambda session: datetime.datetime.strftime(session.start, '%A, %Y-%m-%d'))
