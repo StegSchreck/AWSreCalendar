@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/StegSchreck/AWSreCalendar/blob/master/AWSreCalendar.png" width="150px">
+</p>
+
 # AWSreCalendar
 
 This project takes the data for your favourited sessions of the AWS re:Invent and prints them grouped by date and sorted by time.
