@@ -177,7 +177,7 @@ class AWSreInvent:
         session_end_hour, session_end_minute = session_end_time.split(' ')[0].split(':')
         session_end_am_pm = session_end_time.split(' ')[1]
         if session_end_am_pm.upper() == 'PM':
-            session_end_hour = (int(session_end_hour) + 12) % 24
+            session_end_hour = (int(session_end_hour) % 12) + 12
         session_end_datetime = session_start_datetime.replace(
             hour=int(session_end_hour),
             minute=int(session_end_minute)
