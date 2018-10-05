@@ -61,6 +61,6 @@ def print_session(session, args):
         '  @ ' + BashColor.RED + '{location}'.format(location=session.location) + BashColor.END
     )
 
-    if args.show_abstract:
+    if args.verbose and args.verbose >= 2:
         print(BashColor.DIM + '{abstract}'.format(abstract=session.abstract) + BashColor.END)
     print()

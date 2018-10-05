@@ -51,8 +51,6 @@ def parse_args():
                                 "Possible values include e.g. 'containers', 'will present'. "
                                 "This is not case sensitive.",
                            required=False)
-    argparser.add_argument("-A", "--show_abstract", help="show the session description in output",
-                           action="store_true", required=False)
     args = argparser.parse_args()
     return args
 

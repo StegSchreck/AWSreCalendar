@@ -51,8 +51,6 @@ You can add some special events by editing `special_events.csv`, which is alread
 
 `-a` / `--abstract`: Filter output to only include items with given text in the abstract. This is not case sensitive.
 
-`-A` / `--show_abstract`: show the session description in output
-
 `-f` / `--file`: Load data from this file instead of parsing the page again. The file has to be next to be in the same folder.
 
 `-v` / `--verbose`: increase output verbosity
