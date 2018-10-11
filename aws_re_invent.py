@@ -180,11 +180,11 @@ class AWSreInvent:
 
     def _parse_session_datetime(self, session_details):
         session_start, session_end_time = self.html_tag_with_content_regex.sub('', session_details).split(' - ')
-        session_start_time = str(datetime.datetime.now().year) + ' ' + session_start
+        session_start_time = str(datetime.datetime.now().year) + ' ' + self.html_tag_regex.sub('', session_start)
         session_start_datetime = datetime.datetime.strptime(session_start_time, '%Y %A, %b %d, %I:%M %p')
         session_end_hour, session_end_minute = session_end_time.split(' ')[0].split(':')
         session_end_am_pm = session_end_time.split(' ')[1]
-        if session_end_am_pm.upper() == 'PM':
+        if 'PM' in session_end_am_pm.upper():
             session_end_hour = (int(session_end_hour) % 12) + 12
         session_end_datetime = session_start_datetime.replace(
             hour=int(session_end_hour),
