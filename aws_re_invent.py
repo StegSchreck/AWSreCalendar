@@ -159,10 +159,12 @@ class AWSreInvent:
             session_abstract_details_button.click()
 
     def _parse_session(self, session_row):
-        session = namedtuple('Session', ['title', 'id', 'type', 'speakers', 'abstract', 'start', 'end', 'location'])
+        session = namedtuple('Session', ['title', 'id', 'type', 'speakers', 'abstract', 'start', 'end', 'location', 'reserved'])
         session.title = session_row.find('span', class_='title').get_text()
         session.id = session_row.find('span', class_='abbreviation').get_text().rstrip(' - ')
         session.type = session_row.find('small', class_='type').get_text()
+        text = session_row.find('span', class_='scheduleStatus').get_text()
+        session.reserved = 'reserved' in text.lower()
         html_element_id = session_row['id']
 
         session.speakers = self._parse_session_speakers(session_row)

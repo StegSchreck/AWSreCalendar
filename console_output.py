@@ -32,8 +32,10 @@ def print_day_schedule(sessions):
 def _print_session_for_day_schedule(earliest_start, session):
     duration = (session.end - session.start).seconds // 60 // 15
     start_offset = (session.start - earliest_start).seconds // 60 // 15
-    sys.stdout.write(
-        BashColor.BOLD + ' {id:<{width}}'.format(id=session.id, width=9) + BashColor.DARKGREY + ' | ' + BashColor.END)
+    mark_reserved_session = ''
+    if session.reserved:
+        mark_reserved_session = BashColor.GREEN
+    sys.stdout.write(BashColor.BOLD + mark_reserved_session + ' {id:<{width}}'.format(id=session.id, width=9) + BashColor.DARKGREY + ' | ' + BashColor.END)
     sys.stdout.write('{title:<{width}}'.format(title=session.title[:60], width=60) + BashColor.DARKGREY + ' | ' + BashColor.END)
     sys.stdout.write(BashColor.VIOLET + '{type:<{width}}'.format(type=session.type[:10], width=10) + BashColor.DARKGREY + ' | ' + BashColor.END)
     sys.stdout.write(BashColor.RED + '{location:<{width}}'.format(location=session.location.split(',')[0][:9], width=9) + BashColor.DARKGREY + ' | ' + BashColor.END)
@@ -50,7 +52,10 @@ def print_sessions(sessions, args):
 
 
 def print_session(session, args):
-    print(BashColor.UNDERLINE + '{id} - {title}'.format(id=session.id, title=session.title) + BashColor.END)
+    mark_reserved_session = ''
+    if session.reserved:
+        mark_reserved_session = BashColor.GREEN
+    print(BashColor.UNDERLINE + mark_reserved_session + '{id} - {title}'.format(id=session.id, title=session.title) + BashColor.END)
     print(BashColor.VIOLET + '{type}'.format(type=session.type) + BashColor.END + '  by ' +
           BashColor.BLUE + ', '.join(session.speakers) + BashColor.END)
     print(

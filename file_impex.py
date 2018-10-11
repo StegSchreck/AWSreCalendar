@@ -13,7 +13,7 @@ def load_sessions_from_csv(filename='import.csv'):
 
 
 def convert_csv_row_to_session(headers, row):
-    session = namedtuple('Session', ['title', 'id', 'type', 'speakers', 'abstract', 'start', 'end', 'location'])
+    session = namedtuple('Session', ['title', 'id', 'type', 'speakers', 'abstract', 'start', 'end', 'location', 'reserved'])
     session.title = row[headers.index("title")]
     session.id = row[headers.index("id")]
     session.type = row[headers.index("type")]
@@ -22,14 +22,15 @@ def convert_csv_row_to_session(headers, row):
     session.start = datetime.datetime.strptime(row[headers.index("start")], '%Y-%m-%d %H:%M:%S')
     session.end = datetime.datetime.strptime(row[headers.index("end")], '%Y-%m-%d %H:%M:%S')
     session.location = row[headers.index("location")]
+    session.reserved = row[headers.index("reserved")] == 'True'
     return session
 
 
 def save_sessions_to_csv(sessions, filename='export.csv'):
     with open(os.path.join(os.path.dirname(__file__), filename), 'w') as output_file:
         writer = csv.writer(output_file)
-        writer.writerow(('title', 'id', 'type', 'speakers', 'abstract', 'start', 'end', 'location'))  # field header
-        writer.writerows([(session.title, session.id, session.type, session.speakers, session.abstract, session.start, session.end, session.location) for session in sessions])
+        writer.writerow(('title', 'id', 'type', 'speakers', 'abstract', 'start', 'end', 'location', 'reserved'))  # field header
+        writer.writerows([(session.title, session.id, session.type, session.speakers, session.abstract, session.start, session.end, session.location, session.reserved) for session in sessions])
 
 
 def wait_for_file_to_exist(filepath, seconds=30):
