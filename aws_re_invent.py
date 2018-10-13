@@ -101,7 +101,7 @@ class AWSreInvent:
             sessions = list(group)
             group_size = len(sessions)
             sessions = self.filter_sessions_by_arguments(sessions)
-            if self.args.day is None or self.args.day.lower() in key.lower():
+            if (self.args.day is None or self.args.day.lower() in key.lower()) and not self.args.quiet:
                 print()
                 print(
                     BashColor.BOLD +

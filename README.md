@@ -61,6 +61,8 @@ You can add some special events by editing `special_events.csv`, which is alread
 
 `--ical`: Export schedule to iCal file.
 
+`-q` / `--quiet`: Do not print session schedule to console output. This overrules the verbosity argument.
+
 `-v` / `--verbose`: Increase output verbosity.
 
 `-x` / `--show_browser`: Show the browser doing his work (this might help for debugging).
