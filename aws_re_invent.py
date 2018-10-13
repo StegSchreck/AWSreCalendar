@@ -11,7 +11,7 @@ from selenium.common.exceptions import NoSuchElementException
 from bash_color import BashColor
 from browser_handler import BrowserHandler
 from console_output import print_sessions, print_day_schedule
-from file_impex import load_sessions_from_csv, save_sessions_to_csv
+from file_impex import load_sessions_from_csv, save_sessions_to_csv, save_sessions_to_ical
 
 
 class AWSreInvent:
@@ -90,6 +90,8 @@ class AWSreInvent:
         else:
             sessions = self.parse_sessions()
             save_sessions_to_csv(sessions)
+        if self.args.ical:
+            save_sessions_to_ical(sessions)
         special_events = load_sessions_from_csv('special_events.csv')
         sessions = sessions + special_events
 

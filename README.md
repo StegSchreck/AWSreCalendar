@@ -59,11 +59,13 @@ You can add some special events by editing `special_events.csv`, which is alread
 
 `-f` / `--file`: Load data from this file instead of parsing the page again. The file has to be next to be in the same folder.
 
-`-v` / `--verbose`: increase output verbosity
+`--ical`: Export schedule to iCal file.
 
-`-x` / `--show_browser`: show the browser doing his work (this might help for debugging)
+`-v` / `--verbose`: Increase output verbosity.
 
-`-h` / `--help`: Display the help, including all possible parameter options
+`-x` / `--show_browser`: Show the browser doing his work (this might help for debugging).
+
+`-h` / `--help`: Display the help, including all possible parameter options.
 
 
 ## Trouble shooting

@@ -51,8 +51,8 @@ def parse_args():
                                 "Possible values include e.g. 'containers', 'will present'. "
                                 "This is not case sensitive.",
                            required=False)
-    argparser.add_argument("-r", "--reserved", help="Only show reserved sessions.",
-                           action="store_true", required=False)
+    argparser.add_argument("-r", "--reserved", help="Only show reserved sessions.", action="store_true", required=False)
+    argparser.add_argument("--ical", help="Export schedule to iCal file", action="store_true", required=False)
     args = argparser.parse_args()
     return args
 
