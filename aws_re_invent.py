@@ -190,13 +190,20 @@ class AWSreInvent:
         session_start_datetime = datetime.datetime.strptime(session_start_time, '%Y %A, %b %d, %I:%M %p')
         session_end_hour, session_end_minute = session_end_time.split(' ')[0].split(':')
         session_end_am_pm = session_end_time.split(' ')[1]
-        if 'PM' in session_end_am_pm.upper():
-            session_end_hour = (int(session_end_hour) % 12) + 12
+        session_end_hour = self._convert_12_am_or_pm('PM' in session_end_am_pm.upper(), session_end_hour)
         session_end_datetime = session_start_datetime.replace(
             hour=int(session_end_hour),
             minute=int(session_end_minute)
         )
         return session_start_datetime, session_end_datetime
+
+    @staticmethod
+    def _convert_12_am_or_pm(is_pm, hour):
+        if is_pm:
+            hour = (int(hour) % 12) + 12
+        elif int(hour) == 12:  # AM
+            hour = 0
+        return hour
 
     def _parse_session_speakers(self, session_row):
         session_speakers = []
