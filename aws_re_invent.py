@@ -145,7 +145,8 @@ class AWSreInvent:
 
         for session_row in sessions_rows:
             session = self._parse_session(session_row)
-            sessions.append(session)
+            if session:
+                sessions.append(session)
 
         return sessions
 
@@ -177,6 +178,9 @@ class AWSreInvent:
         session_details = self.browser.find_element_by_xpath(
             "//div[@id='{element_id}']//ul".format(element_id=html_element_id)
         ).get_attribute('innerHTML')
+        if "There aren't any available sessions at this time." in session_details:
+            return None
+
         session.start, session.end = self._parse_session_datetime(session_details)
         session.location = self.browser.find_element_by_xpath(
             "//div[@id='{element_id}']//span[contains(@class, 'sessionRoom')]".format(element_id=html_element_id)
